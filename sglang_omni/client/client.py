@@ -133,6 +133,7 @@ class Client:
             audio=audio,
             finish_reason=finish_reason or "stop",
             usage=last_chunk.usage,
+            language=last_chunk.language,
         )
 
     # ------------------------------------------------------------------
@@ -233,6 +234,7 @@ class Client:
             mime_type=mime_type,
             format=actual_format,
             usage=last_chunk.usage if last_chunk else None,
+            finish_reason=last_chunk.finish_reason if last_chunk else None,
         )
 
     # ------------------------------------------------------------------
@@ -339,6 +341,7 @@ class Client:
                 ) or Client._build_usage_info(audio_result)
                 return chunk
             text = result.get("text")
+            chunk.language = result.get("language")
             if isinstance(text, str):
                 chunk.text = text
             token_ids = result.get("token_ids")

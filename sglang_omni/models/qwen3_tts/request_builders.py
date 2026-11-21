@@ -810,6 +810,11 @@ def apply_sglang_qwen3_tts_result(
             "ref_code_len": data.ref_code_len,
             "prompt_tokens": data.ref_code_len,
             "completion_tokens": len(data.output_codes),
+            "finish_reason": data.finish_reason or (
+                "length"
+                if data.max_new_tokens is not None and len(data.output_codes) >= data.max_new_tokens
+                else "stop"
+            ),
             "engine_time_s": time.perf_counter() - data.engine_start_s,
             "sample_rate": 24000,
         },

@@ -552,6 +552,8 @@ def _register_speech(app: FastAPI) -> None:
         headers = {
             "Content-Disposition": f'attachment; filename="speech.{result.format}"',
         }
+        if result.finish_reason is not None:
+            headers["X-Finish-Reason"] = result.finish_reason
         if result.usage is not None:
             if result.usage.prompt_tokens is not None:
                 headers["X-Prompt-Tokens"] = str(result.usage.prompt_tokens)
@@ -874,9 +876,9 @@ def _register_transcriptions(app: FastAPI) -> None:
 
         try:
             result = await client.completion(gen_req, request_id=request_id)
-        except ClientError as exc:
-            raise HTTPException(status_code=500, detail=str(exc)) from exc
         except Exception as exc:
+            if "Unsupported language:" in str(exc):
+                raise HTTPException(status_code=400, detail=str(exc)) from exc
             logger.exception("Error transcribing audio for request %s", request_id)
             raise HTTPException(status_code=500, detail=str(exc)) from exc
 
@@ -892,7 +894,10 @@ def _register_transcriptions(app: FastAPI) -> None:
                     f"{response_format!r}"
                 ),
             )
-        return JSONResponse(content=TranscriptionResponse(text=text).model_dump())
+        response = TranscriptionResponse(text=text).model_dump()
+        if normalized_response_format == "verbose_json" and result.language is not None:
+            response["language"] = result.language
+        return JSONResponse(content=response)
 
 
 def build_transcription_generate_request(

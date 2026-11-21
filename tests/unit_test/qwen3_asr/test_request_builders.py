@@ -20,6 +20,9 @@ class _FakeTokenizer:
     eos_token_id = 2
     vocab_size = 1000
 
+    def __len__(self):
+        return self.vocab_size + 1
+
     def __init__(self) -> None:
         self.encode_calls: list[str] = []
         self.decode_calls: list[dict] = []

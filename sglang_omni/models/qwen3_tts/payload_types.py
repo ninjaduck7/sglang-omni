@@ -30,6 +30,7 @@ class Qwen3TTSState:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     engine_time_s: float = 0.0
+    finish_reason: str | None = None
 
     @staticmethod
     def _tensor_to_list(value: Any) -> Any:
@@ -74,6 +75,8 @@ class Qwen3TTSState:
             data["completion_tokens"] = self.completion_tokens
         if self.engine_time_s:
             data["engine_time_s"] = self.engine_time_s
+        if self.finish_reason is not None:
+            data["finish_reason"] = self.finish_reason
         return data
 
     @classmethod
@@ -103,4 +106,5 @@ class Qwen3TTSState:
             prompt_tokens=int(data.get("prompt_tokens", 0) or 0),
             completion_tokens=int(data.get("completion_tokens", 0) or 0),
             engine_time_s=float(data.get("engine_time_s", 0.0) or 0.0),
+            finish_reason=data.get("finish_reason"),
         )

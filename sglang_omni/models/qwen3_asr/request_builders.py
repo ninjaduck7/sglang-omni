@@ -35,6 +35,7 @@ from sglang_omni.proto import StagePayload
 from sglang_omni.scheduling.sglang_backend import SGLangARRequestData
 
 from .audio_lengths import qwen3_asr_num_audio_tokens
+from .languages import resolve_language
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +52,7 @@ class Qwen3ASRRequestData(SGLangARRequestData):
     prompt_token_ids: list[int] | None = None
     output_ids: list[int] | None = None
     audio_duration_s: float = 0.0
-    language: str = "en"
+    language: str | None = None
     engine_start_s: float = 0.0
 
 
@@ -148,25 +149,25 @@ def make_qwen3_asr_scheduler_adapters(
 
     audio_pad_token_id = int(tokenizer.convert_tokens_to_ids(_AUDIO_PAD))
     eos_token_id = int(tokenizer.eos_token_id)
-    vocab_size = int(tokenizer.vocab_size)
+    vocab_size = len(tokenizer)  # Includes the added <asr_text> token.
     asr_text_token_ids = _encode_literal(tokenizer, _ASR_TEXT)
 
-    def _build_prompt_ids(num_audio_tokens: int, language: str) -> list[int]:
+    def _build_prompt_ids(num_audio_tokens: int, language: str | None) -> list[int]:
         prompt = (
+            "<|im_start|>system\n<|im_end|>\n"
             f"<|im_start|>user\n"
             f"{_AUDIO_START}{_AUDIO_PAD * num_audio_tokens}{_AUDIO_END}"
             f"<|im_end|>\n"
             f"<|im_start|>assistant\n"
         )
-        # Qwen3-ASR needs a forced prefix "language <Lang><asr_text>" on the
-        # assistant turn; the model then generates only the transcription after
-        # <asr_text>. Without it the (small) model emits the language tag then
-        # stops. Upstream qwen_asr does the same (_build_text_prompt).
-        prompt = prompt + f"language {language}<asr_text>"
+        if language is not None:
+            prompt += f"language {language}<asr_text>"
         return tokenizer(prompt, add_special_tokens=False).input_ids
 
     def request_builder(payload: StagePayload) -> Qwen3ASRRequestData:
         params = payload.request.params or {}
+        hint = params.get("language")
+        forced_language = resolve_language(hint) if hint is not None else None
         audio = load_audio(_audio_source_from_payload(payload))
         audio_duration_s = float(len(audio) / _SAMPLE_RATE)
         fingerprint = _audio_fingerprint(audio)
@@ -195,10 +196,6 @@ def make_qwen3_asr_scheduler_adapters(
             f"num_audio_tokens={num_audio_tokens} feat_shape={tuple(features.shape)}"
         )
 
-        lang_raw = str(params.get("language") or "en").strip().lower()
-        forced_language = {"zh": "Chinese", "cn": "Chinese"}.get(
-            lang_raw, "Chinese" if lang_raw.startswith("zh") else "English"
-        )
         input_ids = _build_prompt_ids(num_audio_tokens, forced_language)
 
         audio_item = MultimodalDataItem(
@@ -272,7 +269,7 @@ def make_qwen3_asr_scheduler_adapters(
             max_new_tokens=request_max_new_tokens,
             temperature=temperature,
             audio_duration_s=audio_duration_s,
-            language=str(params.get("language") or "en"),
+            language=forced_language,
             engine_start_s=time.perf_counter(),
             stage_payload=payload,
         )
@@ -287,6 +284,14 @@ def make_qwen3_asr_scheduler_adapters(
             f"[qwen3-asr] n_out={len(output_ids)} ids={output_ids[:40]} " f"raw={raw!r}"
         )
         asr_text_idx = _find_subsequence(output_ids, asr_text_token_ids)
+        language = data.language
+        if language is None and asr_text_idx is not None:
+            prefix = _decode_token_ids(
+                tokenizer, output_ids[:asr_text_idx], skip_special_tokens=True
+            ).strip()
+            label, _, value = prefix.partition(" ")
+            value = value.strip() if label.casefold() == "language" else prefix
+            language = value if value and value.casefold() != "none" else None
         transcript_ids = (
             output_ids[asr_text_idx + len(asr_text_token_ids) :]
             if asr_text_idx is not None
@@ -301,7 +306,7 @@ def make_qwen3_asr_scheduler_adapters(
             request=payload.request,
             data={
                 "text": text,
-                "language": data.language,
+                "language": language,
                 "duration_s": data.audio_duration_s,
                 "asr_latency_s": engine_time_s,
                 "usage": {"engine_time_s": engine_time_s},

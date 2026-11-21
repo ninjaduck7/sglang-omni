@@ -137,6 +137,7 @@ class GenerateChunk:
     modality: str = "text"
     audio_data: Any = None
     sample_rate: int | None = None
+    language: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -194,6 +195,7 @@ class CompletionResult:
     audio: CompletionAudio | None = None
     finish_reason: str = "stop"
     usage: UsageInfo | None = None
+    language: str | None = None
 
 
 @dataclass
@@ -217,6 +219,7 @@ class SpeechResult:
     mime_type: str
     format: str
     usage: UsageInfo | None = None
+    finish_reason: str | None = None
 
 
 class ClientError(Exception):

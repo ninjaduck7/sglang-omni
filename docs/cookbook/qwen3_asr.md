@@ -55,12 +55,12 @@ print(resp.json()["text"])
 |---|---|---|---|
 | `file` | file | required | Audio file uploaded as multipart form data |
 | `model` | string | server default | Model identifier |
-| `language` | string | `en` | Language hint; `zh`/`cn` select Chinese, other values use English prompting |
+| `language` | string | auto-detect | Optional supported code or canonical name, e.g. `fr`, `Chinese`, or `zh-CN`; unsupported hints return HTTP 400. |
 | `response_format` | string | `json` | `json`, `verbose_json`, or `text` |
 | `temperature` | float | `0.01` effective | Sampling temperature; `0` is converted to near-greedy `0.01` |
 
-`verbose_json` is accepted, but currently returns the same minimal JSON shape as `json`:
-`{"text": "..."}`.
+`json` returns `{"text": "..."}`. With `verbose_json` the response also
+includes `language` when the model detects it or a valid hint selects it.
 
 `max_new_tokens` is supported inside the model request builder, but the public transcription endpoint does not currently expose it as a form field. The route uses the ASR stage default unless the pipeline is configured another way.
 

@@ -166,6 +166,7 @@ def create_sglang_tts_engine_executor(
     gpu_id: int | None = None,
     dtype: str = "bfloat16",
     attn_implementation: str | None = None,
+    server_args_overrides: dict[str, Any] | None = None,
 ) -> Any:
     from qwen_tts import Qwen3TTSModel
     from transformers import AutoProcessor
@@ -184,9 +185,7 @@ def create_sglang_tts_engine_executor(
         device = f"cuda:{gpu_id}"
     gpu_id = int(device.split(":")[-1]) if ":" in device else 0
 
-    server_args = build_sglang_server_args(
-        checkpoint_dir,
-        context_length=8192,
+    settings = dict(
         dtype=dtype,
         disable_cuda_graph=False,
         disable_overlap_schedule=True,
@@ -198,6 +197,8 @@ def create_sglang_tts_engine_executor(
         torch_compile_max_bs=16,
         trust_remote_code=True,
     )
+    settings.update(server_args_overrides or {})
+    server_args = build_sglang_server_args(checkpoint_dir, context_length=8192, **settings)
 
     want_cuda_graph = not bool(getattr(server_args, "disable_cuda_graph", False))
     if want_cuda_graph:

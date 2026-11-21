@@ -167,7 +167,7 @@ class Qwen3TTSTalkerTextModel(nn.Module):
         residual = None
         layers = self.layers
         if is_decode:
-            layers = self._compiled_decode_layers
+            layers = getattr(self, "_compiled_decode_layers", self.layers)
         for idx in range(self.start_layer, self.end_layer):
             hidden_states, residual = layers[idx](
                 positions=positions,

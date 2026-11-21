@@ -1361,8 +1361,10 @@ def test_qwen3_tts_decode_feedback_empty_batch_noops() -> None:
     assert forward_batch.input_ids.numel() == 0
 
 
+@pytest.mark.parametrize("compiled", [False, True])
 def test_qwen3_tts_decode_forward_does_not_clear_feedback_mask(
     monkeypatch: pytest.MonkeyPatch,
+    compiled: bool,
 ) -> None:
     install_fake_sglang(monkeypatch)
     from sglang_omni.models.qwen3_tts.sglang_model import Qwen3TTSTalkerTextModel
@@ -1377,7 +1379,8 @@ def test_qwen3_tts_decode_forward_does_not_clear_feedback_mask(
     torch.nn.Module.__init__(model)
     model.codec_embedding = torch.nn.Embedding(8, 4)
     model.layers = torch.nn.ModuleList([])
-    model._compiled_decode_layers = model.layers
+    if compiled:
+        model._compiled_decode_layers = model.layers
     model.start_layer = 0
     model.end_layer = 0
     model.norm = IdentityNorm()

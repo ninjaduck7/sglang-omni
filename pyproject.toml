@@ -77,9 +77,33 @@ sgl-omni = "sglang_omni.cli:app"
 sgl-omni-router = "sglang_omni_router.serve:main"
 
 [tool.uv]
+constraint-dependencies = [
+    "torch==2.9.1+cu128",
+    "torchvision==0.24.1+cu128",
+    "torchaudio==2.9.1+cu128",
+    "nixl==0.7.0",
+    "mooncake-transfer-engine==0.3.8",
+    "nvidia-cutlass-dsl==4.3.4",
+    "datasets==3.6.0",
+]
 override-dependencies = [
     "protobuf>=6.31.1,<7.0.0",
 ]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "tuna"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

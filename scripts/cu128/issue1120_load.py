@@ -110,7 +110,12 @@ async def main(a):
                 d=gcd(rate,16000)
                 return resample_poly(samples,16000//d,rate//d)
             prefix=pcm(clips["en"])
-            tail=pcm((CLIPS/"feature-fr.wav").read_bytes())
+            table=next(pq.ParquetFile(out/"private/en.parquet").iter_batches(
+                batch_size=32,columns=["sample_id","ref_audio","ref_text"]))
+            row=next(r for r in table.to_pylist() if r["sample_id"]=="common_voice_en_15735839-common_voice_en_15735837")
+            raw_tail=row["ref_audio"]["bytes"]
+            tail=pcm(raw_tail)
+            event("tail_control",reference=row["ref_text"],**await post(s,raw_tail,{"language":"en"}))
             for name,duration,pos in [("prefix",30,None),("within",30,29.9-len(tail)/16000),
                                       ("after",35,30.3),("overflow_audio",150,145.)]:
                 y=np.zeros(16000*duration,dtype="float32")
@@ -121,7 +126,7 @@ async def main(a):
                     y[i:i+len(tail)]=tail
                 b=io.BytesIO()
                 sf.write(b,y,16000,format="WAV",subtype="PCM_16")
-                x=await post(s,b.getvalue(),{"response_format":"verbose_json"})
+                x=await post(s,b.getvalue(),{"response_format":"verbose_json","language":"en"})
                 event("boundary",name=name,duration=duration,tail_start=pos,**x)
             # The multipart prompt is accepted by the API; verify whether the
             # backend actually consumes it before interpreting this as overflow.

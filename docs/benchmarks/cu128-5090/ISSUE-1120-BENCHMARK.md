@@ -42,7 +42,7 @@ All rows use the four-resident profile. Historical fixed-language rates and P95s
 | Historical EN | 4 | 3,264 / 0 | 1.279–1.415 | 11.56 | 480 | 0.075 | 54.25 |
 | Historical EN | 8 | 3,264 / 0 | 1.264–1.400 | 8.70 | 1,128 | 0.202 | 40.82 |
 | Historical ZH | 1 | 6,060 / 0 | 0.680–0.734 | 5.41 | 245 | 0.040 | 25.31 |
-| Historical ZH | 2 | 6,060 / 0 | 0.701–0.722 | 7.29 | 389 | 0.060 | 34.13 |
+| Historical ZH | 2 | 6,060 / 0 | 0.701–0.722 | 7.29 | 389 | 0.059 | 34.13 |
 | Historical ZH | 4 | 6,060 / 0 | 0.689–1.067 | 11.07 | 523 | 0.078 | 51.83 |
 | Historical ZH | 8 | 6,060 / 0 | 0.695–0.770 | 10.21 | 1,050 | 0.169 | 47.81 |
 | Historical auto EN+ZH | 4 | 3,108 / 0 | 1.370 EN; 0.824 ZH | 7.03 | 942 | 0.124 | 32.93 |

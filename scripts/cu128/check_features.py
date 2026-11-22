@@ -9,8 +9,11 @@ from pathlib import Path
 import requests
 
 
-def words(text):
-    return "".join(c.casefold() for c in text if unicodedata.category(c)[0] in "LN")
+def units(text, language):
+    normalized = "".join(
+        c.casefold() if unicodedata.category(c)[0] in "LN" else " " for c in text
+    )
+    return normalized.split() if language != "zh" else list("".join(normalized.split()))
 
 
 def check_asr(client, url, clips):
@@ -20,13 +23,17 @@ def check_asr(client, url, clips):
         ("en", "invalid-language", "json", None),
         ("zh", None, "verbose_json", "Chinese"),
         ("en", "English", "json", None),
+        ("fr", "fr", "verbose_json", "French"),
+        ("fr", None, "verbose_json", "French"),
     ]
-    expected = {"en": "The weather is sunny today.", "zh": "今天天气很好。"}
+    expected = {"en": "The weather is sunny today.", "zh": "今天天气很好。",
+                "fr": "Bonjour, comment allez-vous ?"}
     for clip, hint, fmt, language in cases:
         params = {"response_format": fmt}
         if hint:
             params["language"] = hint
-        with (clips / f"vivian-{clip}.wav").open("rb") as audio:
+        filename = "feature-fr.wav" if clip == "fr" else f"vivian-{clip}.wav"
+        with (clips / filename).open("rb") as audio:
             r = client.post(url + "/transcriptions", data=params,
                             files={"file": ("clip.wav", audio, "audio/wav")}, timeout=60)
         if hint == "invalid-language":
@@ -34,7 +41,7 @@ def check_asr(client, url, clips):
         else:
             r.raise_for_status()
             body = r.json()
-            assert words(body["text"]) == words(expected[clip]), body
+            assert units(body["text"], clip) == units(expected[clip], clip), body
             if fmt == "json":
                 assert set(body) == {"text"}, body
             else:

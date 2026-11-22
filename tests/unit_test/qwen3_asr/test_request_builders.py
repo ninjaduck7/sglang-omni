@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from types import SimpleNamespace
+
+import numpy as np
+import pytest
 import torch
 
 from sglang_omni.models.qwen3_asr.audio_lengths import (
@@ -105,3 +109,33 @@ def test_qwen3_asr_result_adapter_decodes_without_text_round_trip() -> None:
         "skip_special_tokens": True,
         "clean_up_tokenization_spaces": False,
     }
+
+@pytest.mark.parametrize(("hint", "suffix"), [
+    ("FR", "language French<asr_text>"),
+    ("zh-CN", "language Chinese<asr_text>"),
+    (None, ""),
+])
+def test_qwen3_asr_language_hint_reaches_model_prompt(monkeypatch, hint, suffix):
+    class RecordingTokenizer(_FakeTokenizer):
+        def __call__(self, prompt, *, add_special_tokens):
+            self.prompt = prompt
+            return SimpleNamespace(input_ids=[42] * prompt.count("<|audio_pad|>"))
+
+    tokenizer = RecordingTokenizer()
+    monkeypatch.setattr(
+        "sglang_omni.models.qwen3_asr.request_builders.load_audio",
+        lambda _: np.zeros(1600, dtype=np.float32),
+    )
+    build, _ = make_qwen3_asr_scheduler_adapters(
+        tokenizer=tokenizer,
+        max_new_tokens=32,
+        feature_extractor=lambda *_args, **_kw: SimpleNamespace(
+            input_features=torch.zeros(1, 128, 10),
+            attention_mask=torch.ones(1, 10),
+        ),
+    )
+    payload = StagePayload(request_id="hint", request=OmniRequest(
+        inputs={}, params={} if hint is None else {"language": hint}
+    ), data={})
+    build(payload)
+    assert tokenizer.prompt.split("<|im_start|>assistant\n")[-1] == suffix

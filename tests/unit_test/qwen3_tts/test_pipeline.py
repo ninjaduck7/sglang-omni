@@ -685,10 +685,12 @@ def test_qwen3_tts_vocoder_batches_decode_requests(
     first.data = Qwen3TTSState(
         audio_codes=torch.tensor([[1, 2], [3, 4]]),
         ref_code_len=1,
+        finish_reason="length",
     ).to_dict()
     second = make_payload(inputs="second")
     second.data = Qwen3TTSState(
         audio_codes=torch.tensor([[5, 6], [7, 8]]),
+        finish_reason="stop",
     ).to_dict()
 
     results = scheduler._batch_fn([first, second])
@@ -696,6 +698,7 @@ def test_qwen3_tts_vocoder_batches_decode_requests(
     assert scheduler._max_batch_size == 2
     assert scheduler._max_batch_wait_s == pytest.approx(0.003)
     assert decode_batch_sizes == [2]
+    assert [r.data["finish_reason"] for r in results] == ["length", "stop"]
     assert results[0].data["sample_rate"] == 24000
     first_audio = np.frombuffer(results[0].data["audio_waveform"], dtype=np.float32)
     assert first_audio.tolist() == [3.0, 4.0, 5.0]
@@ -706,12 +709,17 @@ def test_qwen3_tts_vocoder_batches_decode_requests(
     assert second_audio.tolist() == [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
 
 
-def test_qwen3_tts_result_adapter_keeps_code_handoff_tensor_native() -> None:
+@pytest.mark.parametrize(("raw", "budget", "expected"), [
+    ("stop", 2, "stop"), (None, 2, "length"), (None, 8, "stop"),
+])
+def test_qwen3_tts_result_adapter_keeps_code_handoff_tensor_native(raw, budget, expected) -> None:
     """Avoids list serialization between the AR stage and vocoder stage."""
     payload = make_payload(inputs="target")
     data = Qwen3TTSSGLangRequestData(
         req=SimpleNamespace(output_ids=[]),
         output_codes=[torch.tensor([1, 2]), torch.tensor([3, 4])],
+        finish_reason=raw,
+        max_new_tokens=budget,
         ref_code=torch.tensor([[9, 9]]),
         ref_code_len=1,
         stage_payload=payload,
@@ -722,6 +730,7 @@ def test_qwen3_tts_result_adapter_keeps_code_handoff_tensor_native() -> None:
     assert isinstance(result.data["audio_codes"], torch.Tensor)
     assert result.data["audio_codes"].tolist() == [[9, 9], [1, 2], [3, 4]]
     assert result.data["completion_tokens"] == 2
+    assert result.data["finish_reason"] == expected
 
 
 def test_qwen3_tts_request_data_keeps_decode_tensors_on_prepared_device(

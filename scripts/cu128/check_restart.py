@@ -18,6 +18,7 @@ def main(args):
     original = json.loads((args.run / "environment.json").read_text())
     assert original["port_closed"] and not original["remaining_owned_gpu_pids"]
     with socket.socket() as sock:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind(("127.0.0.1", args.port))
     env = dict(os.environ)
     env["PATH"] = str(Path(sys.prefix) / "bin") + os.pathsep + env["PATH"]

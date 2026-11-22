@@ -85,7 +85,7 @@ def audit(args):
     auto_cell = next(c for c in cells if c["mode"] == "auto")
     assert detection["en"]["English"] + detection["zh"]["Chinese"] == auto_cell["correct_language"]
     with (args.run / "metrics.csv").open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(csv_rows[0]))
+        writer = csv.DictWriter(f, fieldnames=list(csv_rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(csv_rows)
     result = dict(dataset_revision=REVISION, cells=len(cells),

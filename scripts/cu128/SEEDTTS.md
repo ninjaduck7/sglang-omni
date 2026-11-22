@@ -23,6 +23,7 @@ uv pip install --no-cache --no-deps --python "$VIRTUAL_ENV/bin/python" \
 model="$inputs/asr/qwen/huggingface/Qwen3-ASR-1.7B"
 python scripts/cu128/run_seedtts.py "$model" "$inputs" "$output"
 PYTHONPATH="$PWD:$VIRTUAL_ENV/asr-eval-tools" python scripts/cu128/audit_seedtts.py "$inputs" "$output"
+python scripts/cu128/check_restart.py "$model" "$output"
 python scripts/cu128/render_seedtts.py "$output"
 ```
 

@@ -1,0 +1,17 @@
+{
+  "revision": "27f4c1adee83b5b29b7c4b375f6b976324bda308",
+  "splits": {
+    "en": {
+      "rows": 1088,
+      "unique_audio": 666,
+      "sha256": "5849b41b49cae996328c06d2c5791717c3bafc369bddfa1ec4f86761bb8bc0ca",
+      "audio_seconds": 5105.20375
+    },
+    "zh": {
+      "rows": 2020,
+      "unique_audio": 1010,
+      "sha256": "5d73be79cf2e84fd0bebf5d47212438a88dd264a591031d092164ba84545f1de",
+      "audio_seconds": 9457.100666666667
+    }
+  }
+}

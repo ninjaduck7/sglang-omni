@@ -1,0 +1,17 @@
+{
+  "dataset_revision": "27f4c1adee83b5b29b7c4b375f6b976324bda308",
+  "cells": 25,
+  "verified_rows": 40404,
+  "errors": 0,
+  "detection": {
+    "zh": {
+      "Chinese": 2018,
+      "(none)": 2
+    },
+    "en": {
+      "English": 1085,
+      "(none)": 2,
+      "Englishlanguage Finnish": 1
+    }
+  }
+}

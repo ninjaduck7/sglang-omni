@@ -4,6 +4,12 @@ Target: one RTX 5090 (SM120), driver 570.172.08, Torch 2.9.1+cu128,
 SGLang 0.5.8; source baseline b83910176. Upstream comparison: efe971926.
 Scope: selected upstream features for the two already qualified speech models.
 
+2026-11-22 full EN/ZH ASR qualification: see the [measured results](docs/benchmarks/cu128-5090/REPORT.md)
+and [reproduction instructions](scripts/cu128/SEEDTTS.md). The fixed-language sweep
+covered all 3,108 SeedTTS rows at 1/2/4/8 clients, three times. A separate mixed
+pass correctly identified 3,103/3,108 language labels. No request errors across
+40,404 measured requests. This coverage does not extend to TTS or other languages.
+
 | Feature | Upstream PR | Status | Acceptance / reason |
 | --- | --- | --- | --- |
 | Qwen3-ASR canonical language hints | [1325](https://github.com/sgl-project/sglang-omni/pull/1325) | Verified on GPU | English, ZH-cn and fr produced the expected short transcripts. Invalid hint returned HTTP 400; the next valid request succeeded. Other mapped languages were not evaluated on speech. |
@@ -25,4 +31,4 @@ Post it with `response_format=verbose_json`, once with `language=fr` and once wi
 Minimum sampled free GPU memory: ASR 15045 MiB, TTS 16129 MiB (whole GPU).
 Both services stopped. Peak temporary checkpoint storage was one ASR model
 (4.4 GiB); neither model was retained. No change to environment pins.
-No claims here about long-form accuracy, arbitrary languages, or long-run stability.
+No claims here about long-form accuracy, arbitrary languages, or workloads beyond the measured run.

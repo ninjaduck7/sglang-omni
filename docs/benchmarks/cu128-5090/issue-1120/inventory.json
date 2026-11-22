@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-22T04:49:13.694172+00:00",
+  "source": "d6104bd3ba802cd48ae64cf5de9a6f626f95b520",
+  "model_local": {
+    "repository": "ModelScope Qwen/Qwen3-ASR-1.7B",
+    "revision": "d69410f1c275f2b0fa60cbb9960edfcdb0ae0aec"
+  },
+  "model_comparison": {
+    "repository": "Hugging Face Qwen/Qwen3-ASR-1.7B",
+    "revision": "7278e1e70fe206f11671096ffdd38061171dd6e5"
+  },
+  "files": [
+    {
+      "name": "chat_template.json",
+      "bytes": 1161,
+      "sha256": "75a8cfca24f00de72d796fbfed6858fc9614ef3dabd8696684cc3bc03a9c58ff",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "c44736493efd71ec96218cc626904698cdb13235",
+      "matches_hf": true
+    },
+    {
+      "name": "config.json",
+      "bytes": 6194,
+      "sha256": "2e74a751548b8ad7d7526d29365ad8144c345d8b412b1152d25dc6698452712f",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "2bc16c9d4ca08963715cfb94d879799b9adbd0e9",
+      "matches_hf": true
+    },
+    {
+      "name": "configuration.json",
+      "bytes": 56,
+      "sha256": "c57f6a580d63f7465c6a22ba95847aee05a1ae1181f5abddffb943d9febda061",
+      "hf_id_kind": null,
+      "hf_oid": null,
+      "matches_hf": null
+    },
+    {
+      "name": "generation_config.json",
+      "bytes": 142,
+      "sha256": "1da527824d81e07118facff437e03f2e24a23311e3bdeb2368973fe77e5f275c",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "7382a4d347c0a865b76bb1b8277f66a5ac312854",
+      "matches_hf": true
+    },
+    {
+      "name": "merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7",
+      "matches_hf": true
+    },
+    {
+      "name": "model-00001-of-00002.safetensors",
+      "bytes": 4220320824,
+      "sha256": "a4cd1f1a04d90b757dc7f7dd26254e69a013b19e80efe590a83c6a3bde8608d6",
+      "hf_id_kind": "lfs_sha256",
+      "hf_oid": "a4cd1f1a04d90b757dc7f7dd26254e69a013b19e80efe590a83c6a3bde8608d6",
+      "matches_hf": true
+    },
+    {
+      "name": "model-00002-of-00002.safetensors",
+      "bytes": 478200688,
+      "sha256": "6e0b9d9e09e2e0238e7ef3cc8a484ab387e91b90f1900bedf88bc92d7929ccfc",
+      "hf_id_kind": "lfs_sha256",
+      "hf_oid": "6e0b9d9e09e2e0238e7ef3cc8a484ab387e91b90f1900bedf88bc92d7929ccfc",
+      "matches_hf": true
+    },
+    {
+      "name": "model.safetensors.index.json",
+      "bytes": 64821,
+      "sha256": "f994739fe38e5210b9e3e8ce6c6307315e2ceac3cb630e7b7414d69dce520f60",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "1048a4eb4f21fef9aea06d8568a784b2b5595689",
+      "matches_hf": true
+    },
+    {
+      "name": "preprocessor_config.json",
+      "bytes": 330,
+      "sha256": "45e120a4eda2c20c5d7f2ea9354e63536bf35e27aa573fb7cdf78017b378770d",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "8f7f07346466d5d494ec0d4969d1c3d0190eed72",
+      "matches_hf": true
+    },
+    {
+      "name": "tokenizer_config.json",
+      "bytes": 12487,
+      "sha256": "4942d005604266809309cabc9f4e9cb89ce855d59b14681fdc0e1cc62ea26c4c",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "b93109843922a40c6654c5449d3bf95372267c66",
+      "matches_hf": true
+    },
+    {
+      "name": "vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "hf_id_kind": "git_blob_sha1",
+      "hf_oid": "4783fe10ac3adce15ac8f358ef5462739852c569",
+      "matches_hf": true
+    }
+  ],
+  "seedtts_revision": "27f4c1adee83b5b29b7c4b375f6b976324bda308",
+  "linux": "Linux-6.14.0-37-generic-x86_64-with-glibc2.41",
+  "os": "Ubuntu 25.04",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "ram_bytes": 132260667392,
+  "cpu": "Intel(R) Core(TM) Ultra 9 285K",
+  "logical_cpus": 24,
+  "toolkit": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Fri_Feb_21_20:23:50_PST_2025\nCuda compilation tools, release 12.8, V12.8.93\nBuild cuda_12.8.r12.8/compiler.35583870_0",
+  "gpu": "name, driver_version, compute_cap, memory.total [MiB], power.limit [W], power.default_limit [W], persistence_mode\nNVIDIA GeForce RTX 5090, 570.172.08, 12.0, 32607 MiB, 575.00 W, 575.00 W, Disabled",
+  "visible_mapping": "CUDA_VISIBLE_DEVICES=0 -> only physical GPU, index 0",
+  "packages": {
+    "sglang-omni": "0.1.0",
+    "torch": "2.9.1+cu128",
+    "torchaudio": "2.9.1+cu128",
+    "sglang": "0.5.8",
+    "sgl-kernel": "0.3.21",
+    "nvidia-cuda-runtime-cu12": "12.8.90",
+    "nvidia-cudnn-cu12": "9.10.2.21",
+    "triton": "3.5.1",
+    "transformers": "4.57.1",
+    "flashinfer-python": "0.6.1",
+    "flash-attn": "2.8.3",
+    "pyarrow": "26.0.1",
+    "aiohttp": "3.14.5",
+    "psutil": "7.2.2",
+    "jiwer": "4.0.0",
+    "openai-whisper": "20250625",
+    "soundfile": "0.13.1"
+  }
+}

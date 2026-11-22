@@ -1,0 +1,38 @@
+{
+  "offline_cpu_only": true,
+  "rate": 16000,
+  "max_frames": 3000,
+  "configured_context": 1764,
+  "rows": [
+    {
+      "seconds": 30,
+      "shape": [
+        1,
+        128,
+        3000
+      ],
+      "mask_frames": 3000,
+      "equal_to_prefix": false
+    },
+    {
+      "seconds": 35,
+      "shape": [
+        1,
+        128,
+        3000
+      ],
+      "mask_frames": 3000,
+      "equal_to_prefix": true
+    },
+    {
+      "seconds": 150,
+      "shape": [
+        1,
+        128,
+        3000
+      ],
+      "mask_frames": 3000,
+      "equal_to_prefix": true
+    }
+  ]
+}

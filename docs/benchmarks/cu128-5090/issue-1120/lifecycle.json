@@ -1,0 +1,1247 @@
+{
+  "cold": {
+    "source": "d6104bd3ba802cd48ae64cf5de9a6f626f95b520",
+    "start_unix": 1795322863.0932312,
+    "spawn_unix": 1795322863.8093123,
+    "ready_s": 43.460133868735284,
+    "probe_0": {
+      "correct": true,
+      "status": 200,
+      "body": "{\"text\":\"The weather is sunny today.\"}",
+      "request_s": 52.69004651485011,
+      "since_spawn_s": 96.15033221803606
+    },
+    "probe_1": {
+      "correct": true,
+      "status": 200,
+      "body": "{\"text\":\"The weather is sunny today.\"}",
+      "request_s": 6.061757574789226,
+      "since_spawn_s": 102.21224773302674
+    },
+    "guard_pid": 4087559,
+    "service_pid": 4087564,
+    "service_birth": 1795322862.93,
+    "guard_rc": 0,
+    "port_closed": true,
+    "remaining_tree": [],
+    "remaining_service_gpu_pids": [],
+    "end_unix": 1795322968.7788155,
+    "cache_bytes": 18545180
+  },
+  "initial_wrong_port": {
+    "source": "d6104bd3ba802cd48ae64cf5de9a6f626f95b520",
+    "start_unix": 1795322969.0546782,
+    "spawn_unix": 1795322969.7727184,
+    "guard_rc": 0,
+    "port_closed": true,
+    "remaining_tree": [],
+    "remaining_service_gpu_pids": [],
+    "end_unix": 1795323101.8768888,
+    "cache_bytes": 18545180
+  },
+  "soak": {
+    "source": "bf43b8755a65222e4295b94bee0e8e4db898806d",
+    "start_unix": 1795323252.0163324,
+    "spawn_unix": 1795323252.7323616,
+    "ready_s": 25.802806979045272,
+    "probe_0": {
+      "correct": true,
+      "status": 200,
+      "body": "{\"text\":\"The weather is sunny today.\"}",
+      "request_s": 1.0430488409474492,
+      "since_spawn_s": 26.846040510106832
+    },
+    "probe_1": {
+      "correct": true,
+      "status": 200,
+      "body": "{\"text\":\"The weather is sunny today.\"}",
+      "request_s": 0.19435466919094324,
+      "since_spawn_s": 27.04067229386419
+    },
+    "guard_pid": 4091919,
+    "service_pid": 4091922,
+    "service_birth": 1795323251.86,
+    "guard_rc": 241,
+    "port_closed": true,
+    "remaining_tree": [],
+    "remaining_service_gpu_pids": [],
+    "end_unix": 1795325117.059608,
+    "cache_bytes": 18867428
+  },
+  "restart": {
+    "source": "addd08ab10867b2e2c3ad819964afafaf7e8525d",
+    "start_unix": 1795325122.1882162,
+    "spawn_unix": 1795325122.9083161,
+    "ready_s": 30.21211623121053,
+    "probe_0": {
+      "correct": true,
+      "status": 200,
+      "body": "{\"text\":\"The weather is sunny today.\"}",
+      "request_s": 0.7589927068911493,
+      "since_spawn_s": 30.97131453221664
+    },
+    "probe_1": {
+      "correct": true,
+      "status": 200,
+      "body": "{\"text\":\"The weather is sunny today.\"}",
+      "request_s": 0.1228846269659698,
+      "since_spawn_s": 31.09440337540582
+    },
+    "guard_pid": 4112017,
+    "service_pid": 4112020,
+    "service_birth": 1795325122.05,
+    "guard_rc": 0,
+    "port_closed": true,
+    "remaining_tree": [],
+    "remaining_service_gpu_pids": [],
+    "end_unix": 1795325156.7503393,
+    "cache_bytes": 18867428
+  },
+  "signal": [
+    {
+      "unix": 1795325113.7699888,
+      "kind": "active",
+      "action": "sigterm",
+      "before": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      },
+      "observed": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      },
+      "open_task": true
+    },
+    {
+      "unix": 1795325113.856017,
+      "kind": "sigterm",
+      "pid": 4091922,
+      "response": {
+        "status": 200,
+        "body": {
+          "text": "The weather is sunny today."
+        },
+        "ctype": "application/json",
+        "latency": 0.09150493890047073
+      }
+    }
+  ],
+  "events": [
+    {
+      "unix": 1795323288.8133585,
+      "kind": "cell_start",
+      "c": 1
+    },
+    {
+      "unix": 1795323300.8174899,
+      "kind": "bad_input",
+      "c": 1,
+      "case": "empty",
+      "status": 400,
+      "body": {
+        "detail": "Uploaded audio file is empty"
+      },
+      "ctype": "application/json",
+      "latency": 0.002277728635817766
+    },
+    {
+      "unix": 1795323301.7201908,
+      "kind": "control",
+      "tag": "after_empty_c1",
+      "lang": "en",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today."
+      },
+      "ctype": "application/json",
+      "latency": 0.902237338013947
+    },
+    {
+      "unix": 1795323301.7225485,
+      "kind": "health",
+      "tag": "after_empty_c1",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      }
+    },
+    {
+      "unix": 1795323301.8549023,
+      "kind": "bad_input",
+      "c": 1,
+      "case": "corrupt",
+      "status": 500,
+      "body": {
+        "detail": "Failed to create AudioDecoder for <_io.BytesIO object at 0x732dfbf667a0>: Failed to open input buffer: Invalid data found when processing input"
+      },
+      "ctype": "application/json",
+      "latency": 0.13215790688991547
+    },
+    {
+      "unix": 1795323301.9843073,
+      "kind": "control",
+      "tag": "after_corrupt_c1",
+      "lang": "en",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today."
+      },
+      "ctype": "application/json",
+      "latency": 0.1289233472198248
+    },
+    {
+      "unix": 1795323301.9856412,
+      "kind": "health",
+      "tag": "after_corrupt_c1",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795323301.9924853,
+      "kind": "bad_input",
+      "c": 1,
+      "case": "language",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported language: 'invalid-language'. Use a supported language code (ar, cs, da, de, el, en, es, fa, fi, fil, fr, hi, hu, id, it, ja, ko, mk, ms, nl, pl, pt, ro, ru, sv, th, tr, vi, yue, zh) or canonical name."
+      },
+      "ctype": "application/json",
+      "latency": 0.006729207932949066
+    },
+    {
+      "unix": 1795323302.1475978,
+      "kind": "control",
+      "tag": "after_language_c1",
+      "lang": "en",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today."
+      },
+      "ctype": "application/json",
+      "latency": 0.15469095529988408
+    },
+    {
+      "unix": 1795323302.1489549,
+      "kind": "health",
+      "tag": "after_language_c1",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795323302.4187853,
+      "kind": "bad_input",
+      "c": 1,
+      "case": "format",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported response_format for /v1/audio/transcriptions: 'unknown'"
+      },
+      "ctype": "application/json",
+      "latency": 0.2697007437236607
+    },
+    {
+      "unix": 1795323302.6381629,
+      "kind": "control",
+      "tag": "after_format_c1",
+      "lang": "en",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today."
+      },
+      "ctype": "application/json",
+      "latency": 0.2188764251768589
+    },
+    {
+      "unix": 1795323302.6400392,
+      "kind": "health",
+      "tag": "after_format_c1",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795323738.9110286,
+      "kind": "cell_end",
+      "c": 1,
+      "elapsed": 450.09616329614073,
+      "health": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      }
+    },
+    {
+      "unix": 1795323738.919652,
+      "kind": "active",
+      "action": "disconnect",
+      "before": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      },
+      "observed": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      },
+      "open_task": true
+    },
+    {
+      "unix": 1795323738.9220743,
+      "kind": "disconnect",
+      "after": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795323739.1662898,
+      "kind": "control",
+      "tag": "reconnect",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.24370902683585882
+    },
+    {
+      "unix": 1795323739.167419,
+      "kind": "health",
+      "tag": "reconnect",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795323739.1683652,
+      "kind": "drained",
+      "state": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795323739.1686735,
+      "kind": "cell_start",
+      "c": 2
+    },
+    {
+      "unix": 1795323751.1729362,
+      "kind": "bad_input",
+      "c": 2,
+      "case": "empty",
+      "status": 400,
+      "body": {
+        "detail": "Uploaded audio file is empty"
+      },
+      "ctype": "application/json",
+      "latency": 0.002643126994371414
+    },
+    {
+      "unix": 1795323751.3423874,
+      "kind": "control",
+      "tag": "after_empty_c2",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.16879249224439263
+    },
+    {
+      "unix": 1795323751.343843,
+      "kind": "health",
+      "tag": "after_empty_c2",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 2,
+        "pending_completions": 2,
+        "request_states": {
+          "running": 2
+        }
+      }
+    },
+    {
+      "unix": 1795323751.3528373,
+      "kind": "bad_input",
+      "c": 2,
+      "case": "corrupt",
+      "status": 500,
+      "body": {
+        "detail": "Failed to create AudioDecoder for <_io.BytesIO object at 0x732dd56cee30>: Failed to open input buffer: Invalid data found when processing input"
+      },
+      "ctype": "application/json",
+      "latency": 0.008831874001771212
+    },
+    {
+      "unix": 1795323751.478329,
+      "kind": "control",
+      "tag": "after_corrupt_c2",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.12499855225905776
+    },
+    {
+      "unix": 1795323751.47971,
+      "kind": "health",
+      "tag": "after_corrupt_c2",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 2,
+        "pending_completions": 2,
+        "request_states": {
+          "running": 2
+        }
+      }
+    },
+    {
+      "unix": 1795323751.4970176,
+      "kind": "bad_input",
+      "c": 2,
+      "case": "language",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported language: 'invalid-language'. Use a supported language code (ar, cs, da, de, el, en, es, fa, fi, fil, fr, hi, hu, id, it, ja, ko, mk, ms, nl, pl, pt, ro, ru, sv, th, tr, vi, yue, zh) or canonical name."
+      },
+      "ctype": "application/json",
+      "latency": 0.01716077234596014
+    },
+    {
+      "unix": 1795323751.6554933,
+      "kind": "control",
+      "tag": "after_language_c2",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.1575695420615375
+    },
+    {
+      "unix": 1795323751.6569877,
+      "kind": "health",
+      "tag": "after_language_c2",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 2,
+        "pending_completions": 2,
+        "request_states": {
+          "running": 2
+        }
+      }
+    },
+    {
+      "unix": 1795323751.8205364,
+      "kind": "bad_input",
+      "c": 2,
+      "case": "format",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported response_format for /v1/audio/transcriptions: 'unknown'"
+      },
+      "ctype": "application/json",
+      "latency": 0.1633675629273057
+    },
+    {
+      "unix": 1795323752.0811899,
+      "kind": "control",
+      "tag": "after_format_c2",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.2601392352953553
+    },
+    {
+      "unix": 1795323752.082503,
+      "kind": "health",
+      "tag": "after_format_c2",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 2,
+        "pending_completions": 2,
+        "request_states": {
+          "running": 2
+        }
+      }
+    },
+    {
+      "unix": 1795324189.3859978,
+      "kind": "cell_end",
+      "c": 2,
+      "elapsed": 450.21626495197415,
+      "health": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      }
+    },
+    {
+      "unix": 1795324189.3862963,
+      "kind": "cell_start",
+      "c": 4
+    },
+    {
+      "unix": 1795324201.3920038,
+      "kind": "bad_input",
+      "c": 4,
+      "case": "empty",
+      "status": 400,
+      "body": {
+        "detail": "Uploaded audio file is empty"
+      },
+      "ctype": "application/json",
+      "latency": 0.0032506482675671577
+    },
+    {
+      "unix": 1795324201.8414555,
+      "kind": "control",
+      "tag": "after_empty_c4",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.44875482004135847
+    },
+    {
+      "unix": 1795324201.8548868,
+      "kind": "health",
+      "tag": "after_empty_c4",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 4,
+        "pending_completions": 4,
+        "request_states": {
+          "running": 4
+        }
+      }
+    },
+    {
+      "unix": 1795324201.8698566,
+      "kind": "bad_input",
+      "c": 4,
+      "case": "corrupt",
+      "status": 500,
+      "body": {
+        "detail": "Failed to create AudioDecoder for <_io.BytesIO object at 0x732dd567aa70>: Failed to open input buffer: Invalid data found when processing input"
+      },
+      "ctype": "application/json",
+      "latency": 0.014652894344180822
+    },
+    {
+      "unix": 1795324202.1598132,
+      "kind": "control",
+      "tag": "after_corrupt_c4",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.28939148783683777
+    },
+    {
+      "unix": 1795324202.161358,
+      "kind": "health",
+      "tag": "after_corrupt_c4",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 4,
+        "pending_completions": 4,
+        "request_states": {
+          "running": 4
+        }
+      }
+    },
+    {
+      "unix": 1795324202.2617328,
+      "kind": "bad_input",
+      "c": 4,
+      "case": "language",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported language: 'invalid-language'. Use a supported language code (ar, cs, da, de, el, en, es, fa, fi, fil, fr, hi, hu, id, it, ja, ko, mk, ms, nl, pl, pt, ro, ru, sv, th, tr, vi, yue, zh) or canonical name."
+      },
+      "ctype": "application/json",
+      "latency": 0.10023739095777273
+    },
+    {
+      "unix": 1795324202.4628644,
+      "kind": "control",
+      "tag": "after_language_c4",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.20065212110057473
+    },
+    {
+      "unix": 1795324202.4655297,
+      "kind": "health",
+      "tag": "after_language_c4",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 4,
+        "pending_completions": 4,
+        "request_states": {
+          "running": 4
+        }
+      }
+    },
+    {
+      "unix": 1795324202.9015763,
+      "kind": "bad_input",
+      "c": 4,
+      "case": "format",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported response_format for /v1/audio/transcriptions: 'unknown'"
+      },
+      "ctype": "application/json",
+      "latency": 0.43587615387514234
+    },
+    {
+      "unix": 1795324203.1669958,
+      "kind": "control",
+      "tag": "after_format_c4",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.2650044900365174
+    },
+    {
+      "unix": 1795324203.1687484,
+      "kind": "health",
+      "tag": "after_format_c4",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 4,
+        "pending_completions": 4,
+        "request_states": {
+          "running": 4
+        }
+      }
+    },
+    {
+      "unix": 1795324639.5062544,
+      "kind": "cell_end",
+      "c": 4,
+      "elapsed": 450.1187969110906,
+      "health": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      }
+    },
+    {
+      "unix": 1795324639.5131004,
+      "kind": "active",
+      "action": "disconnect",
+      "before": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      },
+      "observed": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      },
+      "open_task": true
+    },
+    {
+      "unix": 1795324639.5148764,
+      "kind": "disconnect",
+      "after": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795324639.6636562,
+      "kind": "control",
+      "tag": "reconnect",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.14828198309987783
+    },
+    {
+      "unix": 1795324639.6648858,
+      "kind": "health",
+      "tag": "reconnect",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795324639.6658354,
+      "kind": "drained",
+      "state": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 1,
+        "pending_completions": 1,
+        "request_states": {
+          "running": 1
+        }
+      }
+    },
+    {
+      "unix": 1795324639.6662447,
+      "kind": "cell_start",
+      "c": 8
+    },
+    {
+      "unix": 1795324651.6750085,
+      "kind": "bad_input",
+      "c": 8,
+      "case": "empty",
+      "status": 400,
+      "body": {
+        "detail": "Uploaded audio file is empty"
+      },
+      "ctype": "application/json",
+      "latency": 0.004023300018161535
+    },
+    {
+      "unix": 1795324652.1756105,
+      "kind": "control",
+      "tag": "after_empty_c8",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.500101184938103
+    },
+    {
+      "unix": 1795324652.1781294,
+      "kind": "health",
+      "tag": "after_empty_c8",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 8,
+        "pending_completions": 8,
+        "request_states": {
+          "running": 8
+        }
+      }
+    },
+    {
+      "unix": 1795324652.2152038,
+      "kind": "bad_input",
+      "c": 8,
+      "case": "corrupt",
+      "status": 500,
+      "body": {
+        "detail": "Failed to create AudioDecoder for <_io.BytesIO object at 0x732dd41693a0>: Failed to open input buffer: Invalid data found when processing input"
+      },
+      "ctype": "application/json",
+      "latency": 0.03689941065385938
+    },
+    {
+      "unix": 1795324652.886532,
+      "kind": "control",
+      "tag": "after_corrupt_c8",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.6708838073536754
+    },
+    {
+      "unix": 1795324652.8889341,
+      "kind": "health",
+      "tag": "after_corrupt_c8",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 8,
+        "pending_completions": 8,
+        "request_states": {
+          "running": 8
+        }
+      }
+    },
+    {
+      "unix": 1795324652.9286351,
+      "kind": "bad_input",
+      "c": 8,
+      "case": "language",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported language: 'invalid-language'. Use a supported language code (ar, cs, da, de, el, en, es, fa, fi, fil, fr, hi, hu, id, it, ja, ko, mk, ms, nl, pl, pt, ro, ru, sv, th, tr, vi, yue, zh) or canonical name."
+      },
+      "ctype": "application/json",
+      "latency": 0.03952775290235877
+    },
+    {
+      "unix": 1795324653.5755048,
+      "kind": "control",
+      "tag": "after_language_c8",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.6462334147654474
+    },
+    {
+      "unix": 1795324653.5771704,
+      "kind": "health",
+      "tag": "after_language_c8",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 8,
+        "pending_completions": 8,
+        "request_states": {
+          "running": 8
+        }
+      }
+    },
+    {
+      "unix": 1795324654.100998,
+      "kind": "bad_input",
+      "c": 8,
+      "case": "format",
+      "status": 400,
+      "body": {
+        "detail": "Unsupported response_format for /v1/audio/transcriptions: 'unknown'"
+      },
+      "ctype": "application/json",
+      "latency": 0.5236401339061558
+    },
+    {
+      "unix": 1795324654.7163203,
+      "kind": "control",
+      "tag": "after_format_c8",
+      "lang": "zh",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.614818403031677
+    },
+    {
+      "unix": 1795324654.7181044,
+      "kind": "health",
+      "tag": "after_format_c8",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 8,
+        "pending_completions": 8,
+        "request_states": {
+          "running": 8
+        }
+      }
+    },
+    {
+      "unix": 1795325089.9966507,
+      "kind": "cell_end",
+      "c": 8,
+      "elapsed": 450.3287457888946,
+      "health": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      }
+    },
+    {
+      "unix": 1795325089.997107,
+      "kind": "soak_finished",
+      "pid": 4091922
+    }
+  ],
+  "edges": [
+    {
+      "unix": 1795325110.5999787,
+      "kind": "stream_true",
+      "lang": "en",
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today."
+      },
+      "ctype": "application/json",
+      "latency": 0.10757413506507874
+    },
+    {
+      "unix": 1795325110.6911538,
+      "kind": "stream_true",
+      "lang": "zh",
+      "status": 200,
+      "body": {
+        "text": "今天天气很好。"
+      },
+      "ctype": "application/json",
+      "latency": 0.09095691796392202
+    },
+    {
+      "unix": 1795325111.532546,
+      "kind": "tail_control",
+      "reference": "She didn't like the trend of nylon stockings.",
+      "status": 200,
+      "body": {
+        "text": "She didn't like the trend of nylon stockings."
+      },
+      "ctype": "application/json",
+      "latency": 0.10528038116171956
+    },
+    {
+      "unix": 1795325111.8904035,
+      "kind": "boundary",
+      "name": "prefix",
+      "duration": 30,
+      "tail_start": null,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today.",
+        "language": "English"
+      },
+      "ctype": "application/json",
+      "latency": 0.3548973179422319
+    },
+    {
+      "unix": 1795325112.3022943,
+      "kind": "boundary",
+      "name": "within",
+      "duration": 30,
+      "tail_start": 26.737312499999998,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. She didn't like the trend of nylon stockings.",
+        "language": "English"
+      },
+      "ctype": "application/json",
+      "latency": 0.4089972460642457
+    },
+    {
+      "unix": 1795325112.656519,
+      "kind": "boundary",
+      "name": "after",
+      "duration": 35,
+      "tail_start": 30.3,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today.",
+        "language": "English"
+      },
+      "ctype": "application/json",
+      "latency": 0.3510348000563681
+    },
+    {
+      "unix": 1795325113.0599515,
+      "kind": "boundary",
+      "name": "overflow_audio",
+      "duration": 150,
+      "tail_start": 145.0,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today. The weather is sunny today.",
+        "language": "English"
+      },
+      "ctype": "application/json",
+      "latency": 0.39207130996510386
+    },
+    {
+      "unix": 1795325113.1526372,
+      "kind": "large_prompt",
+      "repetitions": 5000,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today."
+      },
+      "ctype": "application/json",
+      "latency": 0.09250282775610685
+    },
+    {
+      "unix": 1795325113.2389998,
+      "kind": "control",
+      "tag": "post_boundary",
+      "lang": "en",
+      "correct": true,
+      "status": 200,
+      "body": {
+        "text": "The weather is sunny today."
+      },
+      "ctype": "application/json",
+      "latency": 0.08578939596191049
+    },
+    {
+      "unix": 1795325113.240075,
+      "kind": "health",
+      "tag": "post_boundary",
+      "body": {
+        "status": "healthy",
+        "running": true,
+        "stages": [
+          "asr"
+        ],
+        "entry_stage": "asr",
+        "total_requests": 0,
+        "pending_completions": 0,
+        "request_states": {}
+      }
+    }
+  ]
+}

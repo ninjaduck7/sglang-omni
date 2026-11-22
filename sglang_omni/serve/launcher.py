@@ -59,6 +59,8 @@ def _find_available_port(host: str, port: int) -> int:
     """Return *port* if available, otherwise find a free port and warn."""
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            # Match the HTTP server's bind policy after a previous active close.
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             s.bind((host, port))
             return port
     except OSError:
